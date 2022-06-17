@@ -1,0 +1,15 @@
+For Client Side 
+# React Js
+# React Router 
+# Apollo Client
+
+For Backend or Server Side 
+# Node Js 
+# GraphQl
+# Apollo Server /express/ Apollo-server-express
+# JsonWebToken 
+# Bcrypt Js
+# Mongoose
+
+DataBase use 
+# MongoDB Atlas
