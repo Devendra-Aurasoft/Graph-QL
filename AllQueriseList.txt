@@ -1,0 +1,52 @@
+===================================
+query getallusers{
+      users{
+    id
+    firstname
+    lastname
+    email
+    password
+  }
+} 
+===================================
+query getallquotes{
+    quotes{
+    name
+    by
+  }
+} 
+===============================
+query getalluserdatawithquotes{
+    users{
+    id
+    firstname
+    lastname
+    email
+    password
+    quotes{
+      name
+      by
+    }
+  }
+}
+=================================== Query Variable
+query Getuserwithid($userid:ID!){
+  user(id:$userid){
+    id
+    firstname
+    lastname
+    email
+    password
+    quotes{
+      name
+      by
+    }
+  }
+}
+===================================== Query Variable
+query getquotebyid($quoteby:ID!){
+  quote(by:$quoteby){
+    name
+    by
+  }
+}
