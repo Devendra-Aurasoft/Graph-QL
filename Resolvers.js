@@ -10,17 +10,14 @@ const resolvers = {
     User: {
         quotes: (user) => quotes.filter(quote => quote.by == user.id)
     },
-    Mutation: {
-        user: (_, { firstname, lastname, email, password }) => {
+    Mutation:{
+        CreateNewUser:(_,{newuser})=>{
             const id = randomBytes(5).toString('hex')
             users.push({
-                id,
-                firstname,
-                lastname,
-                email,
-                password
+                id ,
+                ...newuser
             })
-            return users.find(user => user.id == id)
+            return users.find(user=>user.id==id)
         }
     }
 

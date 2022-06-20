@@ -3,7 +3,9 @@ import { ApolloServer } from "apollo-server";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core"
 import resolvers from "./Resolvers.js"
 import typeDefs from './SchamaGql.js'
-
+import './DataBase.js'
+import './models/Quotes.js'
+import './models/Users.js'
 const server = new ApolloServer({
     typeDefs,
     resolvers,

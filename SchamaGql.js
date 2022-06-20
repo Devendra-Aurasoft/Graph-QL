@@ -21,9 +21,13 @@ type Quote {
 }
 
 type Mutation{
-    createnewuser(firstname:String!,lastname:String!,email:String!,password:String!):User
+    CreateNewUser(newuser:UserInput):User
 }
-
-
+input UserInput {
+    firstname:String !
+    lastname:String !
+    email:String !
+    password:String !
+}
 `
 export default typeDefs;

@@ -50,3 +50,13 @@ query getquotebyid($quoteby:ID!){
     by
   }
 }
+======================================
+mutation AddnewUser ($newuser:UserInput!){
+  user:createnewuser(newuser:$newuser){
+    id
+    firstname
+    lastname
+    email
+    password
+  }
+  }
