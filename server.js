@@ -8,18 +8,25 @@ import './DataBase.js'
 import './models/Quotes.js'
 import './models/Users.js'
 import { Secreate_key } from "./config.js";
+
+
+
+// Middelwere function =============
+const context = ({ req }) => {
+    const { authorization } = req.headers
+    if (authorization) {
+        const { userID } = jwt.verify(authorization, Secreate_key)
+        return { userID }
+    }
+}
+
+
+
+// Create Server==================== 
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({req}) => {
-        const { authorization } = req.headers
-        if (authorization) {
-            console.log(authorization);
-            const {userID} = jwt.verify(authorization, Secreate_key)
-            console.log(userID);
-           return {userID}
-        }
-    },
+    context,
     plugins: [
         ApolloServerPluginLandingPageGraphQLPlayground()
     ]

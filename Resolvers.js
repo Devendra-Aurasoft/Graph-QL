@@ -7,15 +7,19 @@ import QuoteModel from './models/Quotes.js'
 import mongoose from "mongoose";
 const resolvers = {
     Query: {
-        users: () => users,
-        user: (_, arg) => users.find(user => user._id == arg._id),
-        quotes: () => quotes,
-        quote: (_, arg) => quotes.filter(quote => quote.by == arg.by)
+        users:async () =>await userModel.find({}),
+        user:async (_, {_id}) =>await userModel.findOne({_id}) ,// users.find(user => user._id == arg._id),
+        quotes:async () =>await QuoteModel.find({}),
+        quote:async (_, {by}) =>await  QuoteModel.find({by}) // quotes.filter(quote => quote.by == arg.by)
     },
     User: {
-        quotes: (user) => quotes.filter(quote => quote.by == user._id)
+        quotes:async (user) =>await QuoteModel.find({by:user._id})  // quotes.filter(quote => quote.by == user._id)
     },
     Mutation: {
+
+        // ===================================
+        // ==========CreateNewUser============
+        // ===================================
         CreateNewUser: async (_, { newuser }) => {
             const user = await userModel.findOne({ email: newuser.email })
             if (user) {
@@ -33,6 +37,9 @@ const resolvers = {
             }
         },
 
+        // ===================================
+        // ==========Userlogin================
+        // ===================================
         Userlogin: async (_, { logindata }) => {
             const user = await userModel.findOne({ email: logindata.email })
             if (user) {
@@ -46,6 +53,9 @@ const resolvers = {
             throw new Error("user not  exiest with that email please SignUp First")
         },
 
+        // ===================================
+        // ==========CreateQuote==============
+        // ===================================
         CreateQuote: async (_, { name }, { userID }) => {
             console.log(userID);
             if (userID) {
