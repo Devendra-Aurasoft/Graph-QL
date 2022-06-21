@@ -1,0 +1,145 @@
+===================================
+query getallusers{
+      users{
+    id
+    firstname
+    lastname
+    email
+    password
+  }
+} 
+===================================
+query getallquotes{
+    quotes{
+    name
+    by
+  }
+} 
+===============================
+query getalluserdatawithquotes{
+    users{
+    id
+    firstname
+    lastname
+    email
+    password
+    quotes{
+      name
+      by
+    }
+  }
+}
+=================================== Query Variable
+query Getuserwithid($userid:ID!){
+  user(id:$userid){
+    id
+    firstname
+    lastname
+    email
+    password
+    quotes{
+      name
+      by
+    }
+  }
+}
+===================================== Query Variable
+query getquotebyid($quoteby:ID!){
+  quote(by:$quoteby){
+    name
+    by
+  }
+}
+======================================
+mutation AddnewUser ($newuser:UserInput!){
+  user:createnewuser(newuser:$newuser){
+    id
+    firstname
+    lastname
+    email
+    password
+  }
+  }
+
+  
+  ====================================
+  =================Mutation for SignUp
+  ====================================
+  mutation AddnewUser($newuser:UserInput!){
+  user:CreateNewUser(newuser:$newuser){
+  _id
+    firstname
+    lastname
+    email
+    password
+  }
+  }
+  =========================================
+  =====================Mutaion for SignIn
+  =========================================
+  mutation userLoginData($logindata:loginInput !){
+  Userlogin(logindata:$logindata){
+    token
+  }
+}
+
+  =========================================
+  ==================Mutaion for createQuote
+  =========================================
+  mutation createQuote{
+  Quote:CreateQuote(name:"my first quote is created")
+}
+
+
+  =========================================
+  ==================query for GetAllUser
+  =========================================
+  query GetAllUser{
+     users{
+    _id
+    firstname
+    lastname
+    email
+    password
+  }
+}
+
+
+  =========================================
+  ==================query for GetUserByID
+  =========================================
+query GetUserByID($userid:ID!){
+    user(_id:$userid){
+    _id
+    firstname
+    lastname
+    email
+    password
+   quotes{
+      name
+      by
+    }
+  }
+}
+
+
+  =========================================
+  ==================query for GetAllQutes
+  =========================================
+  query GetAllQutes{
+  quotes{
+    name
+    by
+  }
+}
+
+
+  =========================================
+  ==================query for GetQuotesByID
+  =========================================
+  query GetQuotesByID($userid:ID!){
+  quote(by:$userid){
+    name
+    by
+  }
+}
