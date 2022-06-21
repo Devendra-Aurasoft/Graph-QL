@@ -60,3 +60,23 @@ mutation AddnewUser ($newuser:UserInput!){
     password
   }
   }
+  ====================================
+  =================Mutation for SignUp
+  ====================================
+  mutation AddnewUser($newuser:UserInput!){
+  user:CreateNewUser(newuser:$newuser){
+  _id
+    firstname
+    lastname
+    email
+    password
+  }
+  }
+  =========================================
+  =====================Mutaion for SignIn
+  =========================================
+  mutation userLoginData($logindata:loginInput !){
+  Userlogin(logindata:$logindata){
+    token
+  }
+}
